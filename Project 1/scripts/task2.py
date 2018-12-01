@@ -41,7 +41,6 @@ def gaussian_generator(sigma):
 
 
 def convolve(f, g):
-
     conv_img = np.zeros((f.shape[0], f.shape[1]))
     for x in range (3, f.shape[0] - 3):
         for y in range (3, f.shape[1] - 3):
@@ -99,8 +98,8 @@ def diff_of_gauss(lst):
 
 def task2():
 
-    oct1c = cv2.imread('resources/task2.jpg')
-    oct1g = cv2.imread('resources/task2.jpg', 0)
+    oct1c = cv2.imread('../resources/task2.jpg')
+    oct1g = cv2.imread('../resources/task2.jpg', 0)
 
     oct2g = resize_grayscale_octave(oct1g)
     oct3g = resize_grayscale_octave(oct2g)
@@ -143,17 +142,17 @@ def task2():
 
             conv_img = convolve(octave_grayscale[i], gflip)
             lst.append(conv_img)
-            cv2.imwrite('octave'+str(i+1)+'sigma'+str(j+1)+'.png', conv_img)
+            cv2.imwrite('../output_images/octave'+str(i+1)+'sigma'+str(j+1)+'.png', conv_img)
 
         dog = diff_of_gauss(lst)
 
         for k in range (len(dog)):
-            cv2.imwrite('octave'+str(i+1)+'DoG'+str(k+1)+str(k+2)+'.png', dog[k])
+            cv2.imwrite('../output_images/octave'+str(i+1)+'DoG'+str(k+1)+str(k+2)+'.png', dog[k])
 
         kpd1, kpd2 = key_point_detection(octave_colored[i], dog)
 
-        cv2.imwrite('octave'+str(i+1)+'KeyPointDetection1.png', kpd1)
-        cv2.imwrite('octave'+str(i+1)+'KeyPointDetection2.png', kpd2)
+        cv2.imwrite('../output_images/octave'+str(i+1)+'KeyPointDetection1.png', kpd1)
+        cv2.imwrite('../output_images/octave'+str(i+1)+'KeyPointDetection2.png', kpd2)
 
 
 if __name__ == '__main__':

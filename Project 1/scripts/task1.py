@@ -2,13 +2,13 @@ import cv2
 
 
 def task1():
-    img = cv2.imread('resources/task1.png', 0)
+    img = cv2.imread('../resources/task1.png', 0)
 
-    smooth_img = cv2.imread('resources/task1.png', 0)
-    gx = cv2.imread('resources/task1.png', 0)
-    gy = cv2.imread('resources/task1.png', 0)
+    smooth_img = cv2.imread('../resources/task1.png', 0)
+    gx = cv2.imread('../resources/task1.png', 0)
+    gy = cv2.imread('../resources/task1.png', 0)
 
-    # SMOOTHING
+    # Smoothing
     for x in range(1, img.shape[0] - 1):
         for y in range(1, img.shape[1] - 1):
             smooth_img[x][y] = (((img[x-1][y-1] * 1) / 9) + ((img[x][y-1] * 1) / 9) + ((img[x+1][y-1] * 1) / 9) +
@@ -31,8 +31,8 @@ def task1():
                         (smooth_img[x-1][y+1] * -1) + (smooth_img[x][y+1] * 0) + (smooth_img[x+1][y+1] * 1)) / 8
 
 
-    cv2.imwrite('Gx.png', gx)
-    cv2.imwrite('Gy.png', gy)
+    cv2.imwrite('../output_images/task1_gx.png', gx)
+    cv2.imwrite('../output_images/task1_gy.png', gy)
 
 if __name__ == '__main__':
     task1()
